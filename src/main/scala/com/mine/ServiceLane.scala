@@ -1,5 +1,6 @@
 package com.mine
 
+import scala.collection.immutable.Range.Inclusive
 import scala.io.StdIn
 
 /**
@@ -8,44 +9,60 @@ import scala.io.StdIn
 object ServiceLane {
 
 
-  def findSquares(startNumber:Int, endNumber:Int) = {
+  def findLargestVehicle(serviceLineWidthArray: Array[Int], startStopExitRange: Inclusive) = {
+
+    var maxWidth = 3
 
 
+    startStopExitRange.toStream.takeWhile(_ => maxWidth != 1).foreach(x => {
 
-    println((math.floor(math.sqrt(endNumber)) - math.ceil(math.sqrt(startNumber))).toInt+1)
+      if (serviceLineWidthArray(x) < maxWidth) {
 
+        maxWidth = serviceLineWidthArray(x)
+
+      }
+
+    })
+
+    println(maxWidth)
   }
-
-
 
   def main(args: Array[String]) {
 
-    val numberOfTests = StdIn.readInt
+    val numberOfTestsAndArrayLength = createTupleUsingFirstSecondElements(StdIn.readLine().split(" "))
+
+    val serviceLineWidthArray = StdIn.readLine().split(" ").map(_.toInt)
 
 
 
-    for (i <- 1 to numberOfTests) {
-      val inputIntegers = StdIn.readLine().split(" ")
-      
-      val x = createRangeUsingFirstSecondElements(inputIntegers)
+    for (i <- 1 to numberOfTestsAndArrayLength._1) {
+      val startStopExit = StdIn.readLine().split(" ")
 
-      findSquares(x._1,x._2)
+      val startStopExitRange = createRangeUsingFirstSecondElements(startStopExit)
 
-
+      findLargestVehicle(serviceLineWidthArray, startStopExitRange)
 
     }
 
   }
 
+
+  def createTupleUsingFirstSecondElements(inputIntegers: Array[String]) = {
+    inputIntegers match {
+
+      case Array(first: String, second: String, _*) => (first.toInt, second.toInt)
+
+    }
+  }
 
   def createRangeUsingFirstSecondElements(inputIntegers: Array[String]) = {
     inputIntegers match {
 
-      case Array(first: String, second: String,_*) =>   (first.toInt, second.toInt)
+      case Array(first: String, second: String, _*) => (first.toInt to second.toInt)
 
     }
 
-
   }
+
 }
 
