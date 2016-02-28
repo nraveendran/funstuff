@@ -3,7 +3,7 @@ package com.mine;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.Scanner;
 
 /**
  * Created by nidhish on 6/13/15.
@@ -46,7 +46,6 @@ public class Solution {
 
         Scanner input = new Scanner(inputStream);
 
-
         String firstLine = input.nextLine();
 
         String[] firstLineInputArray = firstLine.split(" ");
@@ -58,18 +57,16 @@ public class Solution {
             allElementsArray[i] = Integer.parseInt(input.next());
         }
 
-
-//        int max_diff = -1;
-//        int i, j;
-//        for (i = 0; i < totalNumberOfElements; i++) {
-//            for (j = i + 1; j < totalNumberOfElements; j++) {
-//                int differenceFromBase = allElementsArray[j] - allElementsArray[i];
-//                if (differenceFromBase > max_diff)
-//                    max_diff = differenceFromBase;
-//            }
-//        }
+        //        int max_diff = -1;
+        //        int i, j;
+        //        for (i = 0; i < totalNumberOfElements; i++) {
+        //            for (j = i + 1; j < totalNumberOfElements; j++) {
+        //                int differenceFromBase = allElementsArray[j] - allElementsArray[i];
+        //                if (differenceFromBase > max_diff)
+        //                    max_diff = differenceFromBase;
+        //            }
+        //        }
         System.out.println(maxDifference(allElementsArray));
-
 
     }
 
@@ -91,41 +88,36 @@ public class Solution {
         }
     }
 
-
     private static int findSingleInputLength(String inputLengthString) {
         return Integer.parseInt(inputLengthString.trim());
     }
 
-//            int allInputInt[] = fetchAllInput(inputLength, input);
-//
-//
-//            int outputInt[] = processInput(allInputInt,inputLength);
+    //            int allInputInt[] = fetchAllInput(inputLength, input);
+    //
+    //
+    //            int outputInt[] = processInput(allInputInt,inputLength);
 
-//        readArraySizeAndInputSizeString(arraySizeAndInputSizeString);
+    //        readArraySizeAndInputSizeString(arraySizeAndInputSizeString);
 
-
-//        readArrayAndDoSomething(input, lineNumber, arraySize, inputSize);
-
+    //        readArrayAndDoSomething(input, lineNumber, arraySize, inputSize);
 
     private static int[] processInput(int[] allInputInt, int inputLength) {
 
-//        Node previousNode = null;
-//
-//        for (int i = 0; i <inputLength; i++) {
-//
-//            Node node = new Node();
-//
-//            node.data = allInputInt[0];
-//
-//            previousNode = node;
-//
-//
-//        }
-
+        //        Node previousNode = null;
+        //
+        //        for (int i = 0; i <inputLength; i++) {
+        //
+        //            Node node = new Node();
+        //
+        //            node.data = allInputInt[0];
+        //
+        //            previousNode = node;
+        //
+        //
+        //        }
 
         return allInputInt;
     }
-
 
     private static int[] fetchAllInput(int inputLength, Scanner input) {
         int[] allInput = new int[inputLength];
@@ -136,7 +128,6 @@ public class Solution {
         }
         return allInput;
     }
-
 
     private static void readArrayAndDoSomething(Scanner input, int lineNumber, int arraySize, int inputSize) {
         int[] inputArray = new int[inputSize];
@@ -165,7 +156,7 @@ public class Solution {
             int startIndex = Integer.parseInt(problemArray[1]) - 1;
             int lastIndex = Integer.parseInt(problemArray[2]) - 1;
 
-//            System.out.println("Problem type is " + problemType + " startIndex = " + startIndex + " lastIndex = " + lastIndex);
+            //            System.out.println("Problem type is " + problemType + " startIndex = " + startIndex + " lastIndex = " + lastIndex);
             lineNumber++;
 
 
@@ -207,7 +198,7 @@ public class Solution {
                     curentRangeStart++;
                 }
 
-//                System.out.println(" Min value is " + minValue + " min index is " + minIndex +  " max index is " +  maxIndex);
+                //                System.out.println(" Min value is " + minValue + " min index is " + minIndex +  " max index is " +  maxIndex);
 
                 System.out.println(minValue + " " + minIndex + " " + maxIndex);
 
@@ -224,7 +215,6 @@ public class Solution {
         String[] arraySizeAndInputSizeArray = arraySizeAndInputSizeString.split(" ");
         int arraySize = Integer.parseInt(arraySizeAndInputSizeArray[0]);
         int inputSize = Integer.parseInt(arraySizeAndInputSizeArray[1]);
-
 
         System.out.println("Array size is " + arraySize);
         System.out.println("Input size is " + inputSize);

@@ -4,9 +4,6 @@
 package shapes {
 
 
-import scala.actors.Actor
-
-
 class Point(val x: Double, y: Double) {
 
 

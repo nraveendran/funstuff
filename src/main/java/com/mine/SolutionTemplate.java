@@ -8,7 +8,7 @@ public class SolutionTemplate {
 
         Scanner input = new Scanner(System.in);
 
-        int lineNumber=0;
+        int lineNumber = 0;
         int arraySize = 0;
         int inputSize = 0;
 
@@ -17,7 +17,6 @@ public class SolutionTemplate {
             String[] arraySizeAndInputSizeArray = arraySizeAndInputSizeString.split(" ");
             arraySize = Integer.parseInt(arraySizeAndInputSizeArray[0]);
             inputSize = Integer.parseInt(arraySizeAndInputSizeArray[1]);
-
 
             System.out.println("Array size is " + arraySize);
             System.out.println("Input size is " + inputSize);
@@ -44,14 +43,14 @@ public class SolutionTemplate {
             break;
         }
 
-        while (input.hasNext()  && lineNumber<=inputSize){
+        while (input.hasNext() && lineNumber <= inputSize) {
             String problem = input.nextLine();
             String[] problemArray = problem.split(" ");
             int problemType = Integer.parseInt(problemArray[0]);
-            int startIndex = Integer.parseInt(problemArray[1])-1;
-            int lastIndex = Integer.parseInt(problemArray[2])-1;
+            int startIndex = Integer.parseInt(problemArray[1]) - 1;
+            int lastIndex = Integer.parseInt(problemArray[2]) - 1;
 
-//            System.out.println("Problem type is " + problemType + " startIndex = " + startIndex + " lastIndex = " + lastIndex);
+            //            System.out.println("Problem type is " + problemType + " startIndex = " + startIndex + " lastIndex = " + lastIndex);
             lineNumber++;
 
 
@@ -67,22 +66,22 @@ public class SolutionTemplate {
             int minIndex = 0;
             int maxIndex = 0;
 
-            if (problemType == 1){
+            if (problemType == 1) {
 
                 int curentRangeStart = startIndex; //2
                 int currentRangeEnd = startIndex;  //2
                 int productofRange = 1;
 
-                while (curentRangeStart<= lastIndex) {
+                while (curentRangeStart <= lastIndex) {
                     while (currentRangeEnd <= lastIndex) {
                         int tempRangeStart = curentRangeStart;
                         int tempRangeEnd = currentRangeEnd;
                         while (tempRangeStart <= tempRangeEnd) {
 
-                            productofRange = productofRange * inputArray[tempRangeStart] ;
+                            productofRange = productofRange * inputArray[tempRangeStart];
                             tempRangeStart++;
                         }
-                        if (minValue > productofRange){
+                        if (minValue > productofRange) {
                             minValue = productofRange;
                             minIndex = curentRangeStart;
                             maxIndex = currentRangeEnd;
@@ -93,14 +92,14 @@ public class SolutionTemplate {
                     curentRangeStart++;
                 }
 
-//                System.out.println(" Min value is " + minValue + " min index is " + minIndex +  " max index is " +  maxIndex);
+                //                System.out.println(" Min value is " + minValue + " min index is " + minIndex +  " max index is " +  maxIndex);
 
                 System.out.println(minValue + " " + minIndex + " " + maxIndex);
 
-                minValue =0;
+                minValue = 0;
                 maxIndex = 0;
                 minIndex = 0;
-            }else if (problemType == 2){
+            } else if (problemType == 2) {
                 inputArray[startIndex] = lastIndex;
             }
         }

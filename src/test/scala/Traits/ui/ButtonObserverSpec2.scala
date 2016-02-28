@@ -1,6 +1,6 @@
 package Traits.ui
 
-import Traits.{AbstractObserverSubject, SubjectForFunctionalObservers, ObserverSubjectForReceiveUpdateObservers}
+import Traits.{AbstractObserverSubject, SubjectForFunctionalObservers}
 import org.specs2.Specification
 import ui.Button
 
@@ -14,23 +14,24 @@ class ButtonObserverSpec2 extends Specification {
           when clicked 3 times                        $clickThreeTimes
                                                       """
 
-  var buttonObserver  = new ButtonCountObserver
+  var buttonObserver = new ButtonCountObserver
 
 
-//
-//  var observableButton = new Button("Okay") with ObserverSubjectForReceiveUpdateObservers{
-//    override def click(): Unit = {
-//      println("clicking on a nice button")
-//      super.click()
-//      println("notifying all observers")
-//      notifyObservers
-//
-//    }
-//  }
+  //
+  //  var observableButton = new Button("Okay") with ObserverSubjectForReceiveUpdateObservers{
+  //    override def click(): Unit = {
+  //      println("clicking on a nice button")
+  //      super.click()
+  //      println("notifying all observers")
+  //      notifyObservers
+  //
+  //    }
+  //  }
 
-  var anotherObservableButton = new Button("another button ") with SubjectForFunctionalObservers{
+  var anotherObservableButton = new Button("another button ") with SubjectForFunctionalObservers {
 
     val count = 0;
+
     override def click(): Unit = {
       println("clicking on a nice button")
       super.click()
@@ -42,12 +43,11 @@ class ButtonObserverSpec2 extends Specification {
   def createObservableButton = anotherObservableButton should not be empty
 
 
-
-  var count  = 0
+  var count = 0
 
   def someMethod(subject: AbstractObserverSubject)
   = {
-     count += 1
+    count += 1
 
   }
 
@@ -57,11 +57,12 @@ class ButtonObserverSpec2 extends Specification {
     anotherObservableButton.addObserver((anotherObservableButton) => count += 1)
     buttonObserver should not be empty
   }
-//
+
+  //
   def clickThreeTimes = {
 
-   for (i <- 1 to 3) anotherObservableButton.click()
-   count must be_== (3)
+    for (i <- 1 to 3) anotherObservableButton.click()
+    count must be_==(3)
   }
 
 }

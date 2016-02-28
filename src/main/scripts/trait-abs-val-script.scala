@@ -5,14 +5,13 @@ trait AbstractTrait {
 }
 
 
-class t1 extends Base with AbstractTrait{
+class t1 extends Base with AbstractTrait {
   override val i = "from t1"
   println(i)
 }
 
 
-
-class t2 extends Base with AbstractTrait{
+class t2 extends Base with AbstractTrait {
   override val i = "from t2"
   println(i)
 }

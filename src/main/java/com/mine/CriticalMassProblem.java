@@ -46,9 +46,7 @@ public class CriticalMassProblem {
 
         Scanner input = new Scanner(inputStream);
 
-
-
-//	    String arraySizeAndInputSizeString = input.nextLine();
+        //	    String arraySizeAndInputSizeString = input.nextLine();
 
         String inputLengthString = input.nextLine();
 
@@ -72,7 +70,7 @@ public class CriticalMassProblem {
                     break;
                 }
             }
-            if (criticalMass<requiredStudents) {
+            if (criticalMass < requiredStudents) {
                 System.out.println("YES");
             }
         }
@@ -83,36 +81,32 @@ public class CriticalMassProblem {
         return Integer.parseInt(inputLengthString.trim());
     }
 
-//            int allInputInt[] = fetchAllInput(inputLength, input);
-//
-//
-//            int outputInt[] = processInput(allInputInt,inputLength);
+    //            int allInputInt[] = fetchAllInput(inputLength, input);
+    //
+    //
+    //            int outputInt[] = processInput(allInputInt,inputLength);
 
-//        readArraySizeAndInputSizeString(arraySizeAndInputSizeString);
+    //        readArraySizeAndInputSizeString(arraySizeAndInputSizeString);
 
-
-//        readArrayAndDoSomething(input, lineNumber, arraySize, inputSize);
-
+    //        readArrayAndDoSomething(input, lineNumber, arraySize, inputSize);
 
     private static int[] processInput(int[] allInputInt, int inputLength) {
 
-//        Node previousNode = null;
-//
-//        for (int i = 0; i <inputLength; i++) {
-//
-//            Node node = new Node();
-//
-//            node.data = allInputInt[0];
-//
-//            previousNode = node;
-//
-//
-//        }
-
+        //        Node previousNode = null;
+        //
+        //        for (int i = 0; i <inputLength; i++) {
+        //
+        //            Node node = new Node();
+        //
+        //            node.data = allInputInt[0];
+        //
+        //            previousNode = node;
+        //
+        //
+        //        }
 
         return allInputInt;
     }
-
 
     private static int[] fetchAllInput(int inputLength, Scanner input) {
         int[] allInput = new int[inputLength];
@@ -123,8 +117,6 @@ public class CriticalMassProblem {
         }
         return allInput;
     }
-
-
 
     private static void readArrayAndDoSomething(Scanner input, int lineNumber, int arraySize, int inputSize) {
         int[] inputArray = new int[inputSize];
@@ -153,7 +145,7 @@ public class CriticalMassProblem {
             int startIndex = Integer.parseInt(problemArray[1]) - 1;
             int lastIndex = Integer.parseInt(problemArray[2]) - 1;
 
-//            System.out.println("Problem type is " + problemType + " startIndex = " + startIndex + " lastIndex = " + lastIndex);
+            //            System.out.println("Problem type is " + problemType + " startIndex = " + startIndex + " lastIndex = " + lastIndex);
             lineNumber++;
 
 
@@ -195,7 +187,7 @@ public class CriticalMassProblem {
                     curentRangeStart++;
                 }
 
-//                System.out.println(" Min value is " + minValue + " min index is " + minIndex +  " max index is " +  maxIndex);
+                //                System.out.println(" Min value is " + minValue + " min index is " + minIndex +  " max index is " +  maxIndex);
 
                 System.out.println(minValue + " " + minIndex + " " + maxIndex);
 
@@ -212,7 +204,6 @@ public class CriticalMassProblem {
         String[] arraySizeAndInputSizeArray = arraySizeAndInputSizeString.split(" ");
         int arraySize = Integer.parseInt(arraySizeAndInputSizeArray[0]);
         int inputSize = Integer.parseInt(arraySizeAndInputSizeArray[1]);
-
 
         System.out.println("Array size is " + arraySize);
         System.out.println("Input size is " + inputSize);

@@ -14,10 +14,9 @@ public class StringRunLengthEncoder implements RunLengthEncoder {
 
         for (int i = 0; i < input.length(); i++) {
 
-
-            if (input.charAt(i) != currentChar){
+            if (input.charAt(i) != currentChar) {
                 stringBuffer.append(count).append(currentChar);
-                currentChar=input.charAt(i);
+                currentChar = input.charAt(i);
                 count = 0;
             }
 
@@ -25,7 +24,7 @@ public class StringRunLengthEncoder implements RunLengthEncoder {
 
         }
 
-        if (count > 0){
+        if (count > 0) {
             stringBuffer.append(count).append(currentChar);
         }
 

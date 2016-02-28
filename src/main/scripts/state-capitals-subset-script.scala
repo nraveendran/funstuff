@@ -1,7 +1,7 @@
-def worldCapitals:Map[String,String]= Map (
-    "USA" -> "Washington",
-    "India" -> "New delhi",
-    "France" -> "Paris"
+def worldCapitals: Map[String, String] = Map(
+  "USA" -> "Washington",
+  "India" -> "New delhi",
+  "France" -> "Paris"
 )
 
 println(worldCapitals.get("USA"))

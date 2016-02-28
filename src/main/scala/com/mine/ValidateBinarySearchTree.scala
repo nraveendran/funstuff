@@ -9,18 +9,12 @@ object ValidateBinarySearchTree {
   def main(args: Array[String]) {
 
 
-      val rootTree  = new CustomTree
+    val rootTree = new CustomTree
 
-      rootTree.data = 10
-
-
-
-
-
+    rootTree.data = 10
 
 
   }
-
 
 
 }

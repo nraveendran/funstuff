@@ -7,7 +7,7 @@ import ui.Button
 object ButtonObservableVetoableClickSpec extends Specification {
 
   val button = new Button("Okay") with ObservableClicks with
-    VetoableClicks{
+    VetoableClicks {
     maxAllowedClicks = 2
   }
 
@@ -24,7 +24,7 @@ object ButtonObservableVetoableClickSpec extends Specification {
 
   def clickThreeTimes = {
 
-    for (i <- 1 to 3){
+    for (i <- 1 to 3) {
       button.click()
     }
 
@@ -44,7 +44,6 @@ object ButtonObservableVetoableClickSpec extends Specification {
          maxAllowedClick should be                    $verifyMaxAllowedClicks
           when clicked 3 times                        $clickThreeTimes
                                                       """
-
 
 
 }

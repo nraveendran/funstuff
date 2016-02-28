@@ -2,7 +2,7 @@ package com.mine;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class StringRunLengthEncoderTest {
 
@@ -15,8 +15,6 @@ public class StringRunLengthEncoderTest {
 
         assertEquals("1a", stringRunLengthEncoder.encode("a"));
 
-
     }
-
 
 }

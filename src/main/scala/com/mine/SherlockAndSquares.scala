@@ -8,14 +8,12 @@ import scala.io.StdIn
 object SherlockAndSquares {
 
 
-  def findSquares(startNumber:Int, endNumber:Int) = {
+  def findSquares(startNumber: Int, endNumber: Int) = {
 
 
-
-    println((math.floor(math.sqrt(endNumber)) - math.ceil(math.sqrt(startNumber))).toInt+1)
+    println((math.floor(math.sqrt(endNumber)) - math.ceil(math.sqrt(startNumber))).toInt + 1)
 
   }
-
 
 
   def main(args: Array[String]) {
@@ -26,11 +24,10 @@ object SherlockAndSquares {
 
     for (i <- 1 to numberOfTests) {
       val inputIntegers = StdIn.readLine().split(" ")
-      
+
       val x = createRangeUsingFirstSecondElements(inputIntegers)
 
-      findSquares(x._1,x._2)
-
+      findSquares(x._1, x._2)
 
 
     }
@@ -41,7 +38,7 @@ object SherlockAndSquares {
   def createRangeUsingFirstSecondElements(inputIntegers: Array[String]) = {
     inputIntegers match {
 
-      case Array(first: String, second: String,_*) =>   (first.toInt, second.toInt)
+      case Array(first: String, second: String, _*) => (first.toInt, second.toInt)
 
     }
 

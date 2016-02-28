@@ -1,18 +1,18 @@
 object StringUtil {
 
-	def joiner(stringsList:List[String],separator:String):String={
+  def joiner(stringsList: List[String], separator: String): String = {
 
-		stringsList.mkString(separator)
-	}
+    stringsList.mkString(separator)
+  }
 
-	def joiner(stringsList:List[String]):String={
-		joiner(stringsList,",")
-	}
+  def joiner(stringsList: List[String]): String = {
+    joiner(stringsList, ",")
+  }
 
-	def toCollection(string:String)={
-		string.split(' ')
-		
-	}
+  def toCollection(string: String) = {
+    string.split(' ')
+
+  }
 
 }
 

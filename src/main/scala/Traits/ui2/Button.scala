@@ -1,6 +1,5 @@
 package Traits.ui2
 
-import observer.Subject
 import ui.Widget
 
 

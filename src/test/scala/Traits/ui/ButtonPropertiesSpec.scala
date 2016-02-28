@@ -9,10 +9,9 @@ object ButtonPropertiesSpec extends Specification {
   val button = new Button("Okay")
 
 
-
   def createObservableButton = {
-    button.properties.put("color","black")
-    button.properties.put("size","large")
+    button.properties.put("color", "black")
+    button.properties.put("size", "large")
     button == button
 
   }
@@ -30,7 +29,6 @@ object ButtonPropertiesSpec extends Specification {
     Given a new observable button                     $createObservableButton
           the properties are verified                 $verifyProperties
                                                       """
-
 
 
 }

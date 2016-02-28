@@ -1,17 +1,10 @@
 
 def writeAboutBig() = {
 
-	import java.math.BigInteger.{
+  import java.math.BigInteger.{ONE => _, TEN, ZERO => JAVAZERO}
 
-		ONE => _,
-		TEN,
-		ZERO => JAVAZERO
-
-		
-	}
-
-	println(TEN)
-	println(JAVAZERO)
+  println(TEN)
+  println(JAVAZERO)
 
 }
 

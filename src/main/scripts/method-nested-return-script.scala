@@ -1,10 +1,10 @@
-def upCase(s:String) = {
+def upCase(s: String) = {
 
-	if (s.length==0){
-	    s
-	}else{
-		s.toUpperCase()
-	}
+  if (s.length == 0) {
+    s
+  } else {
+    s.toUpperCase()
+  }
 
 }
 

@@ -6,42 +6,41 @@ import scala.io.StdIn
 object AnagramMatcher {
 
 
-
   def findAnagramMatchingChars(allChars: Array[Char]): Integer = {
 
     val alphabet = Array.fill[Integer](26)(0)
 
 
-    if (allChars.length % 2 !=0 ) {
+    if (allChars.length % 2 != 0) {
       return -1
     }
 
-    val strLength = allChars.length/2
+    val strLength = allChars.length / 2
 
-    for (i <- strLength to allChars.length-1){
-      val alphabetIndex = allChars(i)-'a';
-      alphabet(alphabetIndex)+=1
+    for (i <- strLength to allChars.length - 1) {
+      val alphabetIndex = allChars(i) - 'a';
+      alphabet(alphabetIndex) += 1
     }
 
-    for (i <- 0 to strLength-1){
-      val alphabetIndex = allChars(i)-'a';
-      alphabet(alphabetIndex)-=1
+    for (i <- 0 to strLength - 1) {
+      val alphabetIndex = allChars(i) - 'a';
+      alphabet(alphabetIndex) -= 1
     }
 
 
     var missingNumbers = 0
 
-    for (x <- alphabet){
-      if (x>0){
-        missingNumbers+=x
+    for (x <- alphabet) {
+      if (x > 0) {
+        missingNumbers += x
       }
     }
 
 
 
-    if (missingNumbers >= 0){
+    if (missingNumbers >= 0) {
       missingNumbers
-    }else{
+    } else {
       -1
     }
 
@@ -64,14 +63,11 @@ object AnagramMatcher {
     }
 
 
-
-
   }
 
 
-
-
 }
+
 /*
 6
 aaabbb

@@ -8,12 +8,12 @@ import scala.io.StdIn
 object Factorial {
 
 
-  def factorial(number: Int):BigInt = {
+  def factorial(number: Int): BigInt = {
 
-    if (number==1){
+    if (number == 1) {
       1
-    }else{
-      number * factorial(number-1)
+    } else {
+      number * factorial(number - 1)
     }
 
   }
@@ -23,7 +23,6 @@ object Factorial {
     val inputNumber = StdIn.readInt
 
     println(factorial(inputNumber))
-
 
 
   }

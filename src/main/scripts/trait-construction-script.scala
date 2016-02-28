@@ -1,32 +1,32 @@
-trait t1{
+trait t1 {
 
   println(" in t1 X=" + x)
-  val x=1
+  val x = 1
   println(" in t1 X=" + x)
 
 }
 
-trait t2{
+trait t2 {
 
   println(" in t2 Y=" + y)
-  val y="T2"
+  val y = "T2"
   println(" in t2 Y=" + y)
 
 }
 
-class B12{
+class B12 {
 
   println(" in base12 b=" + b)
-  val b="Base 12"
+  val b = "Base 12"
   println(" in base12 b=" + b)
 
 }
 
 class c12 extends B12 with t1 with t2 {
 
-  println( " in C12: c = " + c )
-  val c="C12"
-  println( " in C12: c = " + c )
+  println(" in C12: c = " + c)
+  val c = "C12"
+  println(" in C12: c = " + c)
 
 }
 

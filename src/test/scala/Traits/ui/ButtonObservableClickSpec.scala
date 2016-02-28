@@ -1,6 +1,5 @@
 package Traits.ui
 
-import org.scalatest.FlatSpec
 import org.specs2.Specification
 import ui.Button
 
@@ -22,7 +21,7 @@ object ButtonObservableClickSpec extends Specification {
 
   def clickThreeTimes = {
 
-    for (i <- 1 to 3){
+    for (i <- 1 to 3) {
       button.click()
     }
 
@@ -35,9 +34,6 @@ object ButtonObservableClickSpec extends Specification {
     Given a new observable button                     $createObservableButton
           when clicked 3 times                        $clickThreeTimes
                                                       """
-
-
-
 
 
 }

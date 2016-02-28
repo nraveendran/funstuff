@@ -46,11 +46,9 @@ public class FizzBuzz {
 
         Scanner input = new Scanner(inputStream);
 
-
-//	    String arraySizeAndInputSizeString = input.nextLine();
+        //	    String arraySizeAndInputSizeString = input.nextLine();
 
         int maxNumber = Integer.parseInt(input.nextLine());
-
 
         for (int i = 1; i <= maxNumber; i++) {
             if (i % 15 == 0) {
@@ -64,44 +62,38 @@ public class FizzBuzz {
             }
         }
 
-
     }
-
 
     private static int findSingleInputLength(String inputLengthString) {
         return Integer.parseInt(inputLengthString.trim());
     }
 
-//            int allInputInt[] = fetchAllInput(inputLength, input);
-//
-//
-//            int outputInt[] = processInput(allInputInt,inputLength);
+    //            int allInputInt[] = fetchAllInput(inputLength, input);
+    //
+    //
+    //            int outputInt[] = processInput(allInputInt,inputLength);
 
-//        readArraySizeAndInputSizeString(arraySizeAndInputSizeString);
+    //        readArraySizeAndInputSizeString(arraySizeAndInputSizeString);
 
-
-//        readArrayAndDoSomething(input, lineNumber, arraySize, inputSize);
-
+    //        readArrayAndDoSomething(input, lineNumber, arraySize, inputSize);
 
     private static int[] processInput(int[] allInputInt, int inputLength) {
 
-//        Node previousNode = null;
-//
-//        for (int i = 0; i <inputLength; i++) {
-//
-//            Node node = new Node();
-//
-//            node.data = allInputInt[0];
-//
-//            previousNode = node;
-//
-//
-//        }
-
+        //        Node previousNode = null;
+        //
+        //        for (int i = 0; i <inputLength; i++) {
+        //
+        //            Node node = new Node();
+        //
+        //            node.data = allInputInt[0];
+        //
+        //            previousNode = node;
+        //
+        //
+        //        }
 
         return allInputInt;
     }
-
 
     private static int[] fetchAllInput(int inputLength, Scanner input) {
         int[] allInput = new int[inputLength];
@@ -112,7 +104,6 @@ public class FizzBuzz {
         }
         return allInput;
     }
-
 
     private static void readArrayAndDoSomething(Scanner input, int lineNumber, int arraySize, int inputSize) {
         int[] inputArray = new int[inputSize];
@@ -141,7 +132,7 @@ public class FizzBuzz {
             int startIndex = Integer.parseInt(problemArray[1]) - 1;
             int lastIndex = Integer.parseInt(problemArray[2]) - 1;
 
-//            System.out.println("Problem type is " + problemType + " startIndex = " + startIndex + " lastIndex = " + lastIndex);
+            //            System.out.println("Problem type is " + problemType + " startIndex = " + startIndex + " lastIndex = " + lastIndex);
             lineNumber++;
 
 
@@ -183,7 +174,7 @@ public class FizzBuzz {
                     curentRangeStart++;
                 }
 
-//                System.out.println(" Min value is " + minValue + " min index is " + minIndex +  " max index is " +  maxIndex);
+                //                System.out.println(" Min value is " + minValue + " min index is " + minIndex +  " max index is " +  maxIndex);
 
                 System.out.println(minValue + " " + minIndex + " " + maxIndex);
 
@@ -200,7 +191,6 @@ public class FizzBuzz {
         String[] arraySizeAndInputSizeArray = arraySizeAndInputSizeString.split(" ");
         int arraySize = Integer.parseInt(arraySizeAndInputSizeArray[0]);
         int inputSize = Integer.parseInt(arraySizeAndInputSizeArray[1]);
-
 
         System.out.println("Array size is " + arraySize);
         System.out.println("Input size is " + inputSize);

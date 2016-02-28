@@ -6,7 +6,7 @@ import scala.io.StdIn
 object InsertionSortStepFinal {
 
 
-  def insertionSortStep(elementArray: Array[Int], index: Int) : Int = {
+  def insertionSortStep(elementArray: Array[Int], index: Int): Int = {
 
     val lastElement = elementArray(index)
     var currentIndex = index;
@@ -19,16 +19,16 @@ object InsertionSortStepFinal {
       if (elementArray(currentIndex - 1) > lastElement) {
         elementArray(currentIndex) = elementArray(currentIndex - 1)
         currentIndex -= 1
-        moves+=1
+        moves += 1
         //        println(elementArray.mkString(" "))
       } else {
         done = true
       }
 
     }
-//    moves+=1
+    //    moves+=1
     elementArray(currentIndex) = lastElement
-//    println(elementArray.mkString(" "))
+    //    println(elementArray.mkString(" "))
 
     moves
   }
@@ -44,7 +44,7 @@ object InsertionSortStepFinal {
     var moves = 0
 
     for (index <- 1 to numElements - 1)
-      moves+=insertionSortStep(elementArray, index);
+      moves += insertionSortStep(elementArray, index);
 
 
     println(moves)

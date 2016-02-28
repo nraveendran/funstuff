@@ -6,7 +6,7 @@ import observer.Subject
 /**
  * Created by nidhish on 3/21/15.
  */
-trait ObservableClicks extends Clickable with Subject{
+trait ObservableClicks extends Clickable with Subject {
 
   abstract override def click() = {
 

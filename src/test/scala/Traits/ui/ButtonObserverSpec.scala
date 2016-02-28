@@ -13,8 +13,7 @@ class ButtonObserverSpec extends Specification {
           when clicked 3 times                        $clickThreeTimes
                                                       """
 
-  var buttonObserver  = new ButtonCountObserver
-
+  var buttonObserver = new ButtonCountObserver
 
 
   var observableButton = new ObservableButton("Okay")
@@ -22,16 +21,16 @@ class ButtonObserverSpec extends Specification {
   def createObservableButton = observableButton should not be empty
 
 
-
   def addButtonCountObserver = {
     observableButton.addObserver(buttonObserver)
     buttonObserver should not be empty
   }
-//
+
+  //
   def clickThreeTimes = {
 
-   for (i <- 1 to 3) observableButton.click()
-   buttonObserver.count must be_== (3)
+    for (i <- 1 to 3) observableButton.click()
+    buttonObserver.count must be_==(3)
   }
 
 }

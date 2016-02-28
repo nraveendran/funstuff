@@ -14,20 +14,19 @@ object StairCase {
 
 
 
-//    for (currentStep <- numSteps to 1 by -1) {
-//      for (i <- 1 to currentStep - 1) {
-//        print(" ")
-//      }
-//      for (i <- currentStep to numSteps) {
-//        print("#")
-//      }
-//      println
-//    }
+    //    for (currentStep <- numSteps to 1 by -1) {
+    //      for (i <- 1 to currentStep - 1) {
+    //        print(" ")
+    //      }
+    //      for (i <- currentStep to numSteps) {
+    //        print("#")
+    //      }
+    //      println
+    //    }
 
-    for (currentStep <- 1 to numSteps ) {
-        println(" "*(numSteps-currentStep) + "#" *  currentStep)
+    for (currentStep <- 1 to numSteps) {
+      println(" " * (numSteps - currentStep) + "#" * currentStep)
     }
-
 
 
   }

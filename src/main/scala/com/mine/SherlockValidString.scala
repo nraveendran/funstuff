@@ -33,7 +33,7 @@ object SherlockValidString {
           oneSet += 1
         } else {
 
-          if (secondSet != 0 && x!= secondSet) {
+          if (secondSet != 0 && x != secondSet) {
             return false;
           } else {
             secondSet = x
@@ -53,19 +53,20 @@ object SherlockValidString {
 
   def main(args: Array[String]) {
 
-//    val numTest = StdIn.readInt()
+    //    val numTest = StdIn.readInt()
 
 
+    //    for (i <- 1 to numTest) {
 
+    val inputCharArray = StdIn.readLine().toCharArray
 
+    println(if (findAnagramMatchingChars(inputCharArray)) {
+      "YES"
+    } else {
+      "NO"
+    })
 
-//    for (i <- 1 to numTest) {
-
-      val inputCharArray = StdIn.readLine().toCharArray
-
-      println(if (findAnagramMatchingChars(inputCharArray)) { "YES"} else { "NO"})
-
-//    }
+    //    }
 
 
   }

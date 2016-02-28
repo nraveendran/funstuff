@@ -7,7 +7,7 @@ object BinarySearch {
 
   def binarySearch(valueToSearch: Int, arrayToSearch: Array[Int], startIndex: Int, endIndex: Int): Integer = {
 
-    if (startIndex>endIndex){
+    if (startIndex > endIndex) {
       return -1
     }
 
@@ -24,6 +24,8 @@ object BinarySearch {
     return -1
 
   }
+
+  //0 1 2 5 3 3 0
 
   def main(args: Array[String]) {
 

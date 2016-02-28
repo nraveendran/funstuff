@@ -13,10 +13,10 @@ object InsertionSortStep {
 
     var done = false
 
-    while (currentIndex-1 >= 0 && !done) {
+    while (currentIndex - 1 >= 0 && !done) {
 
-      if (elementArray(currentIndex-1) > lastElement) {
-        elementArray(currentIndex) = elementArray(currentIndex-1)
+      if (elementArray(currentIndex - 1) > lastElement) {
+        elementArray(currentIndex) = elementArray(currentIndex - 1)
         currentIndex -= 1
         println(elementArray.mkString(" "))
       } else {

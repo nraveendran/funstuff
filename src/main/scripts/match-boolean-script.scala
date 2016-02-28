@@ -1,15 +1,15 @@
-var bools = List("true","false","something")
+var bools = List("true", "false", "something")
 
-for (bool <- bools){
- 
-	println(bool)
+for (bool <- bools) {
 
-	bool match {
-	
-		case "true" => println("Truth right here")
-		case "false" => println("False kingdom")
-		case _  =>  println("don't know you")
-	
-	}
+  println(bool)
+
+  bool match {
+
+    case "true" => println("Truth right here")
+    case "false" => println("False kingdom")
+    case _ => println("don't know you")
+
+  }
 
 }

@@ -16,7 +16,7 @@ object FineCalculator {
     val actualReturnDateString = StdIn.readLine()
     val expectedReturnedDateString = StdIn.readLine()
 
-//    07:05:45PM
+    //    07:05:45PM
 
     val sdfFrom = new SimpleDateFormat("MM dd yyyy")
 
@@ -28,12 +28,11 @@ object FineCalculator {
     val expectedReturnDateInLong = expectedReturnDate.getTime
 
 
-    if (actualReturnDateInLong <=expectedReturnDateInLong){
+    if (actualReturnDateInLong <= expectedReturnDateInLong) {
       println(0)
-    }else{
-      
-    }
+    } else {
 
+    }
 
 
   }

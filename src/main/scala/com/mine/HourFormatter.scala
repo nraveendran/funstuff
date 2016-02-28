@@ -14,15 +14,12 @@ object HourFormatter {
 
     val dateString = StdIn.readLine()
 
-//    07:05:45PM
+    //    07:05:45PM
 
     val sdfFrom = new SimpleDateFormat("hh:mm:ssa")
     val sdfTo = new SimpleDateFormat("HH:mm:ss")
 
     println(sdfTo.format(sdfFrom.parse(dateString)))
-
-
-
 
 
   }

@@ -8,9 +8,6 @@ import scala.io.StdIn
 object TaumBirthday {
 
 
-
-
-
   def main(args: Array[String]) {
 
     val numberOfTests = StdIn.readInt

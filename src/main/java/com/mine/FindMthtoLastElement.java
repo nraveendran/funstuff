@@ -22,22 +22,17 @@ public class FindMthtoLastElement {
 
         Scanner input = new Scanner(inputStream);
 
-
-
-//	    String arraySizeAndInputSizeString = input.nextLine();
+        //	    String arraySizeAndInputSizeString = input.nextLine();
 
         String inputLengthString = input.nextLine();
 
         int indexToOutput = Integer.parseInt(inputLengthString.trim());
 
-
         String[] inputNumbersArray = input.nextLine().split(" ");
-
-
 
         int listSize = inputNumbersArray.length;
 
-        if (listSize == 0 || listSize<indexToOutput) {
+        if (listSize == 0 || listSize < indexToOutput) {
             System.out.println("NIL");
             return;
         }
@@ -48,10 +43,10 @@ public class FindMthtoLastElement {
         NodeList secondRunningNode = null;
         int currentIndex = 1;
 
-        while  (currentNode!=null) {
-            if (currentIndex == indexToOutput){
+        while (currentNode != null) {
+            if (currentIndex == indexToOutput) {
                 secondRunningNode = headNode;
-            } else if (secondRunningNode!=null){
+            } else if (secondRunningNode != null) {
                 secondRunningNode = secondRunningNode.nextItem;
             }
             currentNode = currentNode.nextItem;
@@ -62,13 +57,12 @@ public class FindMthtoLastElement {
 
     }
 
-
     public static class NodeList {
         public String data;
         public NodeList nextItem;
     }
 
-    public static NodeList createNodeList(String[] inputNumbersArray){
+    public static NodeList createNodeList(String[] inputNumbersArray) {
         NodeList headNode = null;
         NodeList currentNode = null;
 
@@ -77,9 +71,9 @@ public class FindMthtoLastElement {
             NodeList newNode = new NodeList();
             newNode.data = inputNumbersArray[i];
 
-            if (headNode == null){
+            if (headNode == null) {
                 headNode = newNode;
-            }else {
+            } else {
                 currentNode.nextItem = newNode;
             }
             currentNode = newNode;
@@ -91,19 +85,14 @@ public class FindMthtoLastElement {
         return Integer.parseInt(inputLengthString.trim());
     }
 
-//            int allInputInt[] = fetchAllInput(inputLength, input);
-//
-//
-//            int outputInt[] = processInput(allInputInt,inputLength);
+    //            int allInputInt[] = fetchAllInput(inputLength, input);
+    //
+    //
+    //            int outputInt[] = processInput(allInputInt,inputLength);
 
-//        readArraySizeAndInputSizeString(arraySizeAndInputSizeString);
+    //        readArraySizeAndInputSizeString(arraySizeAndInputSizeString);
 
-
-//
-
-
-
-
+    //
 
     private static int[] fetchAllInput(int inputLength, Scanner input) {
         int[] allInput = new int[inputLength];
@@ -114,8 +103,6 @@ public class FindMthtoLastElement {
         }
         return allInput;
     }
-
-
 
     private static void readArrayAndDoSomething(Scanner input, int lineNumber, int arraySize, int inputSize) {
         int[] inputArray = new int[inputSize];
@@ -144,7 +131,7 @@ public class FindMthtoLastElement {
             int startIndex = Integer.parseInt(problemArray[1]) - 1;
             int lastIndex = Integer.parseInt(problemArray[2]) - 1;
 
-//            System.out.println("Problem type is " + problemType + " startIndex = " + startIndex + " lastIndex = " + lastIndex);
+            //            System.out.println("Problem type is " + problemType + " startIndex = " + startIndex + " lastIndex = " + lastIndex);
             lineNumber++;
 
 
@@ -186,7 +173,7 @@ public class FindMthtoLastElement {
                     curentRangeStart++;
                 }
 
-//                System.out.println(" Min value is " + minValue + " min index is " + minIndex +  " max index is " +  maxIndex);
+                //                System.out.println(" Min value is " + minValue + " min index is " + minIndex +  " max index is " +  maxIndex);
 
                 System.out.println(minValue + " " + minIndex + " " + maxIndex);
 
@@ -203,7 +190,6 @@ public class FindMthtoLastElement {
         String[] arraySizeAndInputSizeArray = arraySizeAndInputSizeString.split(" ");
         int arraySize = Integer.parseInt(arraySizeAndInputSizeArray[0]);
         int inputSize = Integer.parseInt(arraySizeAndInputSizeArray[1]);
-
 
         System.out.println("Array size is " + arraySize);
         System.out.println("Input size is " + inputSize);

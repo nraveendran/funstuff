@@ -2,7 +2,7 @@ package Traits.ui
 
 import Traits.ui2.Clickable
 
-trait VetoableClicks extends Clickable{
+trait VetoableClicks extends Clickable {
 
   var maxAllowedClicks = 1
 
@@ -10,12 +10,12 @@ trait VetoableClicks extends Clickable{
 
   abstract override def click: Unit = {
 
-    if (clicks < maxAllowedClicks){
+    if (clicks < maxAllowedClicks) {
       println("vetoable clicks calling super")
       super.click
       println("allow clicks")
       clicks += 1
-    }else{
+    } else {
       println("Vetoing the click");
     }
 

@@ -17,7 +17,7 @@ object CeasarCipher {
 
     val offset = StdIn.readInt()
 
-    val output = input.map(x => findOffsetChar(x,offset))
+    val output = input.map(x => findOffsetChar(x, offset))
     //
     print(new String(output).toString)
 
@@ -25,20 +25,20 @@ object CeasarCipher {
   }
 
 
-  def findOffsetChar(y: Char,offset:Int): Char = {
+  def findOffsetChar(y: Char, offset: Int): Char = {
     var x = y.toInt
     if (x >= 'A' && x <= 'Z') {
       x += offset
       if (x > 'Z') {
-        x = ((x-'Z'-1)%26+'A')
+        x = ((x - 'Z' - 1) % 26 + 'A')
       }
-    } else  if (x >= 'a' && x <= 'z') {
+    } else if (x >= 'a' && x <= 'z') {
       x += offset
       if (x > 'z') {
-        x = (x- 'z'-1)%26 +'a'
+        x = (x - 'z' - 1) % 26 + 'a'
       }
     }
-      x.toChar
+    x.toChar
 
   }
 }

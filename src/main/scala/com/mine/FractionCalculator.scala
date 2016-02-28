@@ -17,7 +17,7 @@ object FractionCalculator {
 
     val arrayOfInts = StdIn.readLine().split(" ").map(_.toInt)
 
-    arrayOfInts.foreach(x =>  {
+    arrayOfInts.foreach(x => {
 
       math.signum(x) match {
         case 1.0 => totalPositiveNumbers += 1;
@@ -26,10 +26,10 @@ object FractionCalculator {
       }
     })
 
-//    println(BigDecimal(totalPositiveNumbers / totalNumberOfIntegers).setScale(3, BigDecimal.RoundingMode.HALF_UP))
-//    println(BigDecimal(totalNegativeNumbers / totalNumberOfIntegers).setScale(3, BigDecimal.RoundingMode.HALF_UP))
-//    println(BigDecimal(totalZeroes / totalNumberOfIntegers).setScale(3, BigDecimal.RoundingMode.HALF_UP))
-//
+    //    println(BigDecimal(totalPositiveNumbers / totalNumberOfIntegers).setScale(3, BigDecimal.RoundingMode.HALF_UP))
+    //    println(BigDecimal(totalNegativeNumbers / totalNumberOfIntegers).setScale(3, BigDecimal.RoundingMode.HALF_UP))
+    //    println(BigDecimal(totalZeroes / totalNumberOfIntegers).setScale(3, BigDecimal.RoundingMode.HALF_UP))
+    //
     println("%.3f".format(totalPositiveNumbers / totalNumberOfIntegers))
     println("%.3f".format(totalNegativeNumbers / totalNumberOfIntegers))
     println("%.3f".format(totalZeroes / totalNumberOfIntegers))
