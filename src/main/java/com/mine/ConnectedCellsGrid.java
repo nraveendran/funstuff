@@ -5,43 +5,101 @@ import java.util.Scanner;
 /**
  * Created by nidhish on 7/9/17.
  */
+//TODO DIDN'T GET ALL TESTS
 public class ConnectedCellsGrid {
 
    public static void main(String[] args) {
       Scanner in = new Scanner(System.in);
-      int numProblems = Integer.parseInt(in.nextLine());
+      int numRows = Integer.parseInt(in.nextLine());
+      int numColumns = Integer.parseInt(in.nextLine());
 
-      for (int i = 0; i < numProblems; i++) {
-         int totalMoney = Integer.parseInt(in.nextLine());
-         int numOfIcecreams = Integer.parseInt(in.nextLine());
-         String[] icecreamCosts = in.nextLine().split(" ");
-         int[] iceCreamCostsInt = new int[icecreamCosts.length];
-         for (int j = 0; j < icecreamCosts.length; j++) {
-            iceCreamCostsInt[j] = Integer.parseInt(icecreamCosts[j]);
+      int[][] grid = new int[numRows][numColumns];
+      boolean[][] gridflags = new boolean[numRows][numColumns];
+
+      for (int i = 0; i < numRows; i++) {
+         String[] allColumsArray = in.nextLine().split(" ");
+         for (int j = 0; j < allColumsArray.length; j++) {
+            grid[i][j] = Integer.parseInt(allColumsArray[j]);
          }
-         int firstIndex = -1;
-         int index = -1;
-
-         for (int j = 0; j < iceCreamCostsInt.length - 1; j++) {
-            firstIndex = j+1;
-            int currentCost = iceCreamCostsInt[j];
-            int remainingCost = totalMoney - currentCost;
-            for (int k = j + 1; k < iceCreamCostsInt.length; k++) {
-               if (iceCreamCostsInt[k] == remainingCost) {
-                  index = k+1;
-                  break;
-               }
-            }
-            if (index != -1) {
-               break;
-            }
-         }
-
-         System.out.println(firstIndex + " " + index );
 
       }
 
+      int connectionCount = 0;
 
+      for (int i = 0; i < numRows; i++) {
+         for (int j = 0; j < numColumns; j++) {
+            if (!gridflags[i][j] && grid[i][j] == 1) {
+
+               int tmp = findConnectionCount(grid, i, j, numRows-1, numColumns-1, gridflags);
+
+               connectionCount = Math.max(connectionCount, tmp);
+
+
+            }
+         }
+      }
+
+      System.out.println(connectionCount);
+
+   }
+
+   private static int findConnectionCount(int[][] grid, int i, int j, int numRows, int numColumns,
+       boolean[][] gridflags) {
+
+      if (gridflags[i][j]) {
+         return 0;
+      }
+      gridflags[i][j] = true;
+      int connectionCount = 1;
+
+      if (i - 1 >= 0) {
+         if (j - 1 >= 0) {
+            if (grid[i - 1][j - 1] == 1) {
+               connectionCount += findConnectionCount(grid, i - 1, j - 1, numRows, numColumns, gridflags);
+            }
+            if (grid[i][j - 1] == 1) {
+               connectionCount += findConnectionCount(grid, i, j - 1, numRows, numColumns, gridflags);
+            }
+         }
+
+         if (grid[i - 1][j] == 1) {
+            connectionCount += findConnectionCount(grid, i - 1, j, numRows, numColumns, gridflags);
+         }
+
+         if (j + 1 <= numColumns) {
+
+            if (grid[i - 1][j + 1] == 1) {
+               connectionCount += findConnectionCount(grid, i - 1, j + 1, numRows, numColumns, gridflags);
+            }
+
+            if (grid[i][j + 1] == 1) {
+               connectionCount += findConnectionCount(grid, i, j + 1, numRows, numColumns, gridflags);
+            }
+         }
+      }
+
+      if (i + 1 <= numRows) {
+
+         if (j - 1 >= 0) {
+            if (grid[i + 1][j - 1] == 1) {
+               connectionCount += findConnectionCount(grid, i + 1, j - 1, numRows, numColumns, gridflags);
+            }
+            if (grid[i + 1][j] == 1) {
+               connectionCount += findConnectionCount(grid, i + 1, j, numRows, numColumns, gridflags);
+            }
+         }
+
+         if (j + 1 <= numColumns) {
+
+            if (grid[i + 1][j + 1] == 1) {
+               connectionCount += findConnectionCount(grid, i + 1, j + 1, numRows, numColumns, gridflags);
+            }
+
+         }
+
+      }
+
+      return connectionCount;
    }
 
 }

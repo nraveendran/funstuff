@@ -10,87 +10,128 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 
 /**
- * Created by nidhish on 7/11/17.
+ * 
+ * https://www.hackerrank.com/challenges/count-luck
  */
 public class CountLuck {
 
+   public static Scanner in = new Scanner(System.in);
+   public static int wandWaves = 0;
+
    public static void main(String[] args) {
-      Scanner in = new Scanner(System.in);
-      int numRows = Integer.parseInt(in.nextLine());
 
-      int[][] grid = new int[numRows][numRows];
+      int numProblems = Integer.parseInt(in.nextLine());
 
-      for (int[] row : grid) {
-         Arrays.fill(row, Integer.MIN_VALUE);
+      for (int i = 0; i < numProblems; i++) {
+         wandWaves = 0;
+         findPortKey();
       }
 
-      for (int a = 1; a < numRows; a++) {
-         for (int b = 1; b < numRows; b++) {
 
-            ChessNode[][] chessboard = new ChessNode[numRows][numRows];
-            Queue<ChessNode> queue = new LinkedBlockingQueue<>();
-
-            for (int i = 0; i < numRows; i++) {
-               for (int j = 0; j < numRows; j++) {
-                  chessboard[i][j] = new ChessNode(i, j, Integer.MAX_VALUE);
-               }
-            }
-
-            ChessNode sourceNode = chessboard[0][0];
-            sourceNode.distance = 0;
-            ChessNode destinationNode = chessboard[numRows - 1][numRows - 1];
-
-            queue.add(sourceNode);
-            dfs(destinationNode, queue, chessboard, a, b);
-
-            grid[a][b] = -1;
-            if (destinationNode.distance != Integer.MAX_VALUE) {
-               grid[a][b] = destinationNode.distance;
-            }
-         }
-      }
-
-      for (int i = 1; i < numRows; i++) {
-         for (int j = 1; j < numRows; j++) {
-            int i1 = grid[i][j];
-
-            System.out.print(i1 + " ");
-         }
-         System.out.println();
-      }
    }
 
-   private static void dfs(ChessNode destinationNode, Queue<ChessNode> queue, ChessNode[][] chessboard, int a, int b) {
-      ChessNode sourceNode = queue.poll();
+   private static void findPortKey() {
+      String[] numRowsCols = in.nextLine().split(" ");
 
-      if (destinationNode.distance != Integer.MAX_VALUE || sourceNode.equals(destinationNode)) {
-         return;
+      int numRows = Integer.parseInt(numRowsCols[0]);
+      int numCols = Integer.parseInt(numRowsCols[1]);
+
+      ForestNode[][] forest = new ForestNode[numRows][numCols];
+      Queue<ForestNode> queue = new LinkedBlockingQueue<>();
+
+      ForestNode sourceNode = null;
+
+      for (int a = 0; a < numRows; a++) {
+
+         String cols = in.nextLine();
+         for (int b = 0; b < numCols; b++) {
+
+            ForestNode forestNode = new ForestNode(cols.charAt(b) + "", a, b);
+
+            if (forestNode.value.equals("M")) {
+               sourceNode = forestNode;
+               sourceNode.visited = true;
+            }
+            forest[a][b] = forestNode;
+         }
       }
 
-      Collection<? extends ChessNode> neighbors = sourceNode.findNeighbors(chessboard, a, b);
-      if (neighbors != null && neighbors.size() != 0) {
-         queue.addAll(neighbors);
-      }
+      int guess = Integer.parseInt(in.nextLine());
 
-      while (!queue.isEmpty()) {
-         dfs(destinationNode, queue, chessboard, a, b);
+      List<ForestNode> sourceList = new ArrayList<>();
+      sourceList.add(sourceNode);
+
+      dfs(sourceList, forest);
+
+      //if (guess == wandWaves) {
+      //   System.out.println("Impressed " + wandWaves + " " + guess);
+      //} else {
+      //
+      //   System.out.println("Oops " + wandWaves + " " + guess);
+      //}
+
+      if (guess == wandWaves) {
+         System.out.println("Impressed");
+      } else {
+
+         System.out.println("Oops!");
       }
 
    }
 
+   private static boolean dfs(List<ForestNode> sourceList, ForestNode[][] chessboard) {
 
-   private static class ChessNode {
+      boolean portKeyFound = false;
 
-      private final int rowNum;
-      private final int colNum;
+      for (ForestNode sourceNode : sourceList) {
+
+
+         if (sourceNode.isPortKey() || portKeyFound) {
+            portKeyFound = true;
+            return portKeyFound;
+         }
+
+         List<ForestNode> neighbors = sourceNode.findNeighbors(chessboard);
+         if (neighbors != null && neighbors.size() != 0) {
+            portKeyFound = dfs(neighbors, chessboard);
+
+            if (neighbors.size() > 1 && portKeyFound) {
+               wandWaves++;
+            }
+         }
+
+      }
+
+      return portKeyFound;
+
+   }
+
+
+   private static class ForestNode {
+
+      int rowNum;
+      int colNum;
+      String value;
       private int distance;
+      private boolean visited;
 
-      public ChessNode(int rowNum, int colNum, int distance) {
-         this.rowNum = rowNum;
-         this.colNum = colNum;
-         this.distance = distance;
+      public ForestNode(String value, int a, int b) {
+         this.value = value;
+         this.rowNum = a;
+         this.colNum = b;
       }
 
+      public boolean isBlockingCell() {
+         return value.equals("X");
+      }
+
+      public boolean isEmptyCell() {
+         return value.equals(".");
+      }
+
+      public boolean isPortKey() {
+         return value.equals("*");
+      }
 
       @Override
       public boolean equals(Object o) {
@@ -101,12 +142,12 @@ public class CountLuck {
             return false;
          }
 
-         ChessNode chessNode = (ChessNode) o;
+         ForestNode that = (ForestNode) o;
 
-         if (rowNum != chessNode.rowNum) {
+         if (rowNum != that.rowNum) {
             return false;
          }
-         return colNum == chessNode.colNum;
+         return colNum == that.colNum;
 
       }
 
@@ -117,28 +158,14 @@ public class CountLuck {
          return result;
       }
 
-      private Collection<? extends ChessNode> findNeighbors(ChessNode[][] chessboard, int a, int b) {
+      private List<ForestNode> findNeighbors(ForestNode[][] forest) {
 
-         //int a2 = findOptimalPath(x + a, y - b, a, b, grid, optimalPaths, processingPaths);
-         //int a3 = findOptimalPath(x - a, y + b, a, b, grid, optimalPaths, processingPaths);
-         //int a1 = findOptimalPath(x + a, y + b, a, b, grid, optimalPaths, processingPaths);
-         //int a4 = findOptimalPath(x - a, y - b, a, b, grid, optimalPaths, processingPaths);
-         //
-         //int b1 = findOptimalPath(x + b, y + a, a, b, grid, optimalPaths, processingPaths);
-         //int b2 = findOptimalPath(x + b, y - a, a, b, grid, optimalPaths, processingPaths);
-         //int b3 = findOptimalPath(x - b, y + a, a, b, grid, optimalPaths, processingPaths);
-         //int b4 = findOptimalPath(x - b, y - a, a, b, grid, optimalPaths, processingPaths);
+         List<ForestNode> neighbors = new ArrayList<>();
 
-         List<ChessNode> neighbors = new ArrayList<>();
-
-         ChessNode a1 = findNeighbor(chessboard, this.rowNum + a, this.colNum - b);
-         ChessNode a2 = findNeighbor(chessboard, this.rowNum - a, this.colNum + b);
-         ChessNode a3 = findNeighbor(chessboard, this.rowNum + a, this.colNum + b);
-         ChessNode a4 = findNeighbor(chessboard, this.rowNum - a, this.colNum - b);
-         ChessNode a5 = findNeighbor(chessboard, this.rowNum + b, this.colNum + a);
-         ChessNode a6 = findNeighbor(chessboard, this.rowNum + b, this.colNum - a);
-         ChessNode a7 = findNeighbor(chessboard, this.rowNum - b, this.colNum + a);
-         ChessNode a8 = findNeighbor(chessboard, this.rowNum - b, this.colNum - a);
+         ForestNode a1 = findNeighbor(forest, this.rowNum + 1, this.colNum);
+         ForestNode a2 = findNeighbor(forest, this.rowNum - 1, this.colNum);
+         ForestNode a3 = findNeighbor(forest, this.rowNum, this.colNum + 1);
+         ForestNode a4 = findNeighbor(forest, this.rowNum, this.colNum - 1);
 
          if (a1 != null) {
             neighbors.add(a1);
@@ -155,31 +182,19 @@ public class CountLuck {
             neighbors.add(a4);
          }
 
-         if (a5 != null) {
-            neighbors.add(a5);
-         }
-
-         if (a6 != null) {
-            neighbors.add(a6);
-         }
-
-         if (a7 != null) {
-            neighbors.add(a7);
-         }
-
-         if (a8 != null) {
-            neighbors.add(a8);
-         }
-
          return neighbors;
 
       }
 
-      private ChessNode findNeighbor(ChessNode[][] chessboard, int i, int i1) {
-         if (i < chessboard.length && i1 < chessboard.length && i >= 0 && i1 >= 0) {
-            if (chessboard[i][i1].distance == Integer.MAX_VALUE) {
-               chessboard[i][i1].distance = 1 + this.distance;
-               return chessboard[i][i1];
+      private ForestNode findNeighbor(ForestNode[][] forest, int rowNum, int colNum) {
+         int nosCols = forest[0].length;  // 4
+         int nosRows = forest.length;     // 3
+
+         if (rowNum < nosRows && colNum < nosCols && rowNum >= 0 && colNum >= 0) {
+            if ((forest[rowNum][colNum].isEmptyCell() ||forest[rowNum][colNum].isPortKey()) && !forest[rowNum][colNum]
+                .visited) {
+               forest[rowNum][colNum].visited = true;
+               return forest[rowNum][colNum];
             }
 
          }
@@ -189,11 +204,10 @@ public class CountLuck {
 
 }
 
-//7
-
-//6 4 4 8 2 12
-//4 3 4 2 16 3
-//4 4 2 4 4 4
-//8 2 4 -1 -1 -1
-//2 16 4 -1 -1 -1
-//12 3 4 -1 -1 1
+//Oops!
+//Oops!
+//    Impressed
+//    Impressed
+//    Oops!
+//    Impressed
+//    Oops!
