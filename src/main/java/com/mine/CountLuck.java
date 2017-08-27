@@ -10,7 +10,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 
 /**
- * 
+ *
  * https://www.hackerrank.com/challenges/count-luck
  */
 public class CountLuck {
