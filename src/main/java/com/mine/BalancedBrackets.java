@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.Stack;
 
 
 /**
@@ -14,144 +15,60 @@ public class BalancedBrackets {
 
    public static Scanner in = new Scanner(System.in);
 
+
    public static void main(String[] args) {
       int numProblems = Integer.parseInt(in.nextLine());
 
       for (int i = 0; i < numProblems; i++) {
 
-         findShortestReach();
+         findBalancedBrackets();
       }
 
 
    }
 
-   private static void findShortestReach() {
-      int[] tmp = Arrays.stream(in.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-
-      int numNodes = tmp[0];
-      int numEdges = tmp[1];
-
-      Graph graph = new Graph(numNodes, numEdges);
-
-      for (int i = 0; i < numEdges; i++) {
-
-         tmp = Arrays.stream(in.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-         int startNode = tmp[0];
-         int endNode = tmp[1];
-
-         graph.addEdge(startNode, endNode);
-         graph.addEdge(endNode, startNode);
-
-
-      }
-
-      int sourceNodeInt = Integer.parseInt(in.nextLine());
-
-      GraphNode sourceNode = graph.findSourceNode(sourceNodeInt);
-      sourceNode.distance = 0;
-      sourceNode.visited = true;
-
-      LinkedList<GraphNode> queue = new LinkedList<>();
-      queue.add(sourceNode);
-
-      bfs(queue);
-
-      for (GraphNode node : graph.getAllVertex()) {
-         if (!node.visited) {
-            node.distance = -1;
-         }
-
-         if (!node.equals(sourceNode)) {
-            System.out.print(node.distance + " ");
-         }
-      }
-      System.out.println();
-
+   private static boolean isOpeningBracker(String s) {
+      return s.equals("{") || s.equals("(") || s.equals("[");
    }
 
-   private static void bfs(LinkedList<GraphNode> queue) {
-
-      while (!queue.isEmpty()) {
-         GraphNode sourceNode = queue.poll();
-
-         sourceNode.adjacencyList.stream().filter(adjacentNode -> !adjacentNode.visited).forEach(adjacentNode -> {
-            adjacentNode.visited = true;
-            adjacentNode.distance = sourceNode.distance + 6;
-            queue.add(adjacentNode);
-         });
-      }
-
-
+   private static boolean isEndingBracker(String s) {
+      return s.equals("}") || s.equals(")") || s.equals("]");
    }
 
+   private static void findBalancedBrackets() {
+      char[] brackets = in.next().toCharArray();
 
-   private static class Graph {
+      Stack<String> bracketsStack = new Stack<>();
 
-      int numNodes;
-      int numEdges;
-      GraphNode[] nodes;
+      for (int i = 0; i < brackets.length; i++) {
 
-      private Graph(int numNodes, int numEdges) {
-         this.numNodes = numNodes;
-         this.numEdges = numEdges;
-         nodes = new GraphNode[numNodes];
-
-         for (int i = 0; i < nodes.length; i++) {
-            GraphNode node = new GraphNode(i);
-            nodes[i] = node;
+         String s = brackets[i] + "";
+         if (isOpeningBracker(s)) {
+            bracketsStack.push(s);
+         } else {
+            if (bracketsStack.isEmpty()) {
+               System.out.println("NO");
+               return;
+            } else {
+               String top = bracketsStack.peek();
+               if ((s.equals("]") && top.equals("[")) || (s.equals("}") && top.equals("{")) || (s.equals(")") && top
+                   .equals("("))) {
+                  bracketsStack.pop();
+               } else {
+                  System.out.println("NO");
+                  return;
+               }
+            }
          }
+      }
 
+      if (bracketsStack.isEmpty()) {
+         System.out.println("YES");
+      } else {
+         System.out.println("NO");
       }
 
 
-      private GraphNode findSourceNode(int startNode) {
-         return nodes[startNode - 1];
-      }
-
-      private void addEdge(int sourceNodeInt, int endNodeInt) {
-         GraphNode sourceNode = nodes[sourceNodeInt - 1];
-         GraphNode endNode = nodes[endNodeInt - 1];
-         sourceNode.adjacencyList.add(endNode);
-
-      }
-
-      private GraphNode[] getAllVertex() {
-         return nodes;
-      }
-   }
-
-
-   private static class GraphNode {
-
-      int nodeValue;
-      int distance;
-      boolean visited;
-
-      private GraphNode(int nodeValue) {
-         this.nodeValue = nodeValue;
-      }
-
-      Set<GraphNode> adjacencyList = new LinkedHashSet<>();
-
-      @Override
-      public boolean equals(Object o) {
-         if (this == o) {
-            return true;
-         }
-         if (o == null || getClass() != o.getClass()) {
-            return false;
-         }
-
-         GraphNode graphNode = (GraphNode) o;
-
-         return nodeValue == graphNode.nodeValue;
-
-      }
-
-      @Override
-      public int hashCode() {
-         return nodeValue;
-      }
    }
 
 
